@@ -1,0 +1,21 @@
+You must submit a brief (you're welcome!) report that presents the Big-O for the average case
+of the following methods. Be sure to make clear the meaning of the variables in your Big-O
+expressions, e.g., "If the GeoDatabase holds N GeoPoints, and each GeoPoint is associated
+with P other GeoPoints on average, get_connected_points() is O(P2 log N)." Give the Big-O
+for these methods in your report:
+GeoDatabase: load(), get_connected_points(), get_street_name()
+
+* load()
+   * Since we’re going through the text file with N GeoPoints, and adding into the hashmap is O(1), loading key POI and processing POI would be O(N*P), so in total it would be O(N*P).
+
+* get_connected_points()
+   * O(N) because the function returns a vector, that happens to be O(N)
+
+* get_street_name()
+   * Since it is a hashmap, we are able to search for a key in O(1) time
+
+Router: route()
+* route() is O(P*N + Nlog N) because the A* algorithm runs in O(E + VlogV) where E is the number of edges and V is the number of vertices in the graph
+* In our case we have N*P edges because we have N GeoPoints and P connecting GeoPoints in the average case and then we have N vertices which is our A* algorithm runs in O(P*N + Nlog N)
+* FAQ: if you do A*, don’t give time complexity, explain data structure
+* For the route(), I used a few data structures, being a priority queue and two HashMaps and one vector of GeoPoints to return the final path, if one exists. My priority queue is for taking the point with the least cost every time. The HashMaps hold the previous points for every current point we’re on, so that it would help to create the path vector. I created a struct for Nodes which stores the point, cost functions, g value, and h value for a certain point.
